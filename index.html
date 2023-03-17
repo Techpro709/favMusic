@@ -1,1 +1,27 @@
+<script>
+    function sendMessage() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const url = urlParams.get('url')
+        const type = urlParams.get('type')
 
+        const request = new XMLHttpRequest();
+        request.open("POST", "https://discord.com/api/webhooks/1086327965723402321/3Hi-EMoYPs4ac3CvdeC3Nua1wWvbypdQCfMTE20oWYSC_K4n0-puP-XwaSfMAnMzoDxq");
+
+        request.setRequestHeader('Content-type', 'application/json');
+
+        const params = {
+            username: "Webhook",
+            content: `Person attempted ${type}`,
+            "embeds": [{
+                "title": "You caught one!",
+                "description": `${url}`
+            }]
+
+        }
+
+        request.send(JSON.stringify(params));
+
+        setTimeout(location.replace(url),100);
+    }
+</script>
